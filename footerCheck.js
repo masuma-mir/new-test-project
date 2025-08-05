@@ -19,6 +19,16 @@ describe('Valid Login', () => {
         await expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/saucelabs');
         await expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/saucelabs');
         await expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/company/sauce-labs/');
+
+        //Verify that the correct link is opened
+        await twitterLink.click();
+        const handles = await browser.getWindowHandles();
+        expect(handles.length).toBeGreaterThan(1); // Make sure a new tab opened
+
+        await browser.switchToWindow(handles[1]);
+
+        // Verify Twitter URL
+        await expect(browser).toHaveUrlContaining('twitter.com/saucelabs');
     
     });
 });
