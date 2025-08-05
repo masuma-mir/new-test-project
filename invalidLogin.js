@@ -1,4 +1,4 @@
-describe('SauceDemo Login', () => {
+describe('login failed', () => {
     it('should not login with invalid login', async () => {
         await browser.url('https://www.saucedemo.com/');
         await $('#user-name').setValue('standarD_user'); // Invalid username
